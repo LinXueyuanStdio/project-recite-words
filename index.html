@@ -1,0 +1,860 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背单词</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.bootcss.com/p/bootstrap-switch/static/stylesheets/bootstrapSwitch.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://www.bootcss.com/p/bootstrap-switch/static/js/bootstrapSwitch.js"></script>
+    <script>
+        var data = [["nay", "ad.<书>不仅如此,而且;n.拒绝,反对,投反对票;ad.<古>否,不。", 0],
+        ["kay", "n.凯（女子名）。", 0],
+        ["say", "v.说,讲,背诵,念,表示,比方说,假定;n.话语,想说的意见,发言权。", 0],
+        ["may", "aux.可能,也许,可以,祝,愿;n.(may)五月,能,可能。", 0],
+        ["pay", "n.薪水,工资;v.支付,交纳,给予,有利,值得,合算。", 0],
+        ["hay", "n.干草,黑河(位于英属哥伦比亚)。", 0],
+        ["day", "n.天,白天,日子,白昼。", 0],
+        ["bay", "n.海湾,狗吠声,绝路;vt.吠,使走投无路;vi.吠。", 0],
+        ["way", "n.路,行业,规模,情形;a.途中的;ad.远远地,大大地,非常。", 0],
+        ["ray", "n.光线,闪烁,微量;vi.射出光线,浮现;vt.放射,显出。", 0],
+        ["gay", "a.快乐的,高兴的,轻快的,华美的,五光十色的。", 0],
+        ["jay", "n.鸟,松鸡,碎嘴唠叨的人,傻瓜。", 0],
+        ["lay", "vt.放置,产(卵);vi.下蛋,打赌;n.位置,形势;a.世俗的,外行的;vbl.lie过去式。", 0],
+        ["cap", "n.帽子,军帽,(瓶)帽,(笔)帽;vt.戴帽子,盖在...顶上。", 0],
+        ["lap", "n.膝盖,舔声,重叠的部分;v.（使）重叠,围住,轻拍,舔食,泼溅,拍打。", 0],
+        ["map", "n.地图,图;v.绘制地图。", 0],
+        ["nap", "n.(白天)小睡,打盹,细毛,孤注一掷;vi.小睡,疏忽。", 0],
+        ["hap", "n.偶然,机会,运气;vi.偶然发生。", 0],
+        ["yap", "vi.狂吠,吵嚷;n.狂吠声,废话,无赖。", 0],
+        ["rap", "n.叩击,轻拍,轻敲,斥责;vt.敲,拍,打,厉声说出,斥责,使着迷;vi.敲击,交谈。", 0],
+        ["zap", "v.攻击,打败;n.活力,意志,杀死,int.咝！", 0],
+        ["gap", "n.缺口,裂口,间隙,缝隙,差距,隔阂。", 0],
+        ["sap", "n.树液,体液,活力,坑道,笨人,傻子;vt.使排出体液,逐渐侵蚀;vi.挖坑道。", 0],
+        ["tap", "n.轻打,活栓,水龙头;v.轻打,轻敲。", 0],
+        ["pap", "n.奶头,半流质食物,<美>政治上的偏护。", 0],
+        ["cot", "n.轻便小床,帆布床。", 0],
+        ["lot", "n.签,抽签,一堆,许多,命运,一块地,份额;vt.划分;vi.抽签,抓阄。", 0],
+        ["not", "ad.不。", 0],
+        ["rot", "v.(使)腐烂,(使)腐败;n.腐烂,腐败。", 0],
+        ["pot", "n.罐,壶;v.罐装。", 0],
+        ["sot", "n.醉鬼,酗酒者;vt.因酗酒浪而费掉;vi.嗜酒。", 0],
+        ["tot", "n.小孩,微量,合计;vi.总计,加算;vt.加起来,合计。", 0],
+        ["dot", "n.点,圆点,园点;vt.在...上打点。", 0],
+        ["got", "vbl.get的过去式。", 0],
+        ["jot", "n.少量,少额,稍许;vt.略记,摘要记载下来,草草地记下。", 0],
+        ["hot", "a.热的,热情的,辣的,激动的,紧迫的;ad.热,热切的,紧迫地。", 0],
+        ["lad", "n.少年,小伙子,家伙,老友,伙伴。", 0],
+        ["cad", "n.计算机辅助设计,(小写)无赖。", 0],
+        ["fad", "n.反复无常,一时的流行,嗜好。", 0],
+        ["gad", "vi.闲逛,找乐子;vt.用铁棒刺;n.游荡,錾,(赶牲畜用的)尖头棒。", 0],
+        ["sad", "a.忧愁的,悲哀的。", 0],
+        ["dad", "n.{口语}爸爸。", 0],
+        ["mad", "a.疯狂的,愚蠢的,狂欢的,非常激动的,狂热的,着迷的;n.狂怒。", 0],
+        ["wad", "n.块状软物,填料;vt.把...卷为一卷，填塞,以软物衬填", 0],
+        ["war", "n.战争;vi.作战,打仗。", 0],
+        ["mar", "v.弄坏,毁坏,损害;n.损伤,毁损,障碍;n.(mar)三月(=march)。", 0],
+        ["bar", "n.条,棒(常用作栅栏,扣栓物),横木,酒吧间,栅,障碍物;vt.禁止,阻挡,妨碍。", 0],
+        ["tar", "n.柏油,水兵,沥青,鸦片;v.涂以焦油。", 0],
+        ["jar", "n.震动,刺耳声,震惊,争吵,罐,广口瓶。", 0],
+        ["par", "n.同等,(股票等)票面价值;a.票面的,平价的,平均的,标准的。", 0],
+        ["ear", "n.耳朵,倾听,听觉,听力,穗;vi.抽穗。", 0],
+        ["far", "a.长途的,远方的,遥远的;ad.久远地,广泛地。", 0],
+        ["car", "n.车。", 0],
+        ["oar", "n.桨{手},小艇,桨状物,搅拌棍,橹桨;v.引渡。", 0],
+        ["mow", "n.干草堆,谷堆;v.刈,割草,扫除,收割庄稼,扫倒。", 0],
+        ["sow", "n.大母猪;vt.播种,散布,使密布;vi.播种。", 0],
+        ["cow", "n.母牛,大型母兽;vt.威吓。", 0],
+        ["bow", "n.弓,乐弓,弓形,鞠躬,船首;v.鞠躬,弯腰。", 0],
+        ["how", "ad.如何,（指范围,程度,数量,价值）多少,多么;n.方式（或方法）。", 0],
+        ["row", "n.排,行;v.划(船)。", 0],
+        ["tow", "n.拖绳,麻的粗纤维;vt.拖,曳,牵引;vi.拖行,被拖带。", 0],
+        ["low", "n.低,低价,牛叫声;a.低的,浅的,消沉的;ad.低下地,谦卑地,低价地。", 0],
+        ["now", "ad.现在,目前,此刻,立刻,马上;n.现在,如今;conj.既然。", 0],
+        ["vow", "n.誓约;v.宣誓,立誓,发誓。", 0],
+        ["bet", "n.赌注,打赌;v.赌,赌钱。", 0],
+        ["net", "n.网,网络,网状物,净利,实价;a.净余的,纯粹的;vt.用网捕,净赚,得到;vi.编网。", 0],
+        ["get", "vt.获得,变成,收获,使得,挣得,受到(惩罚,打击等),染上,抓住;vi.到达,成为,变得。", 0],
+        ["pet", "n.宠物,受宠爱的人,不悦;a.宠爱的,亲昵的;vt.宠爱。", 0],
+        ["yet", "ad.仍,至今,益发,更;conj.然而,但是。", 0],
+        ["set", "v.放,置,移动到,设置,提出,树立,规定,调整;n.一套,一副,一批,布景。", 0],
+        ["wet", "a.湿的,潮湿的,有雨的,多雨的;vt.弄湿。", 0],
+        ["jet", "n.喷射,黑玉;v.喷射;a.黑玉色的,墨黑的,喷气机。", 0],
+        ["let", "vt.假设,出租,允许,排放,让...进入(或通过),妨碍;vi.出租,(工程等)被承包。", 0],
+        ["jut", "v.(使)突出,(使)伸出,突击;n.突出部分,伸出部分。", 0],
+        ["but", "prep.除...以外;conj.而是,但是;ad.几乎,仅仅。", 0],
+        ["gut", "n.{复}内脏,小肠,剧情,内容,海峡;vt.取出内脏,摧毁(房屋)内部装置。", 0],
+        ["nut", "n.坚果,螺母,螺帽,难解的问题。", 0],
+        ["cut", "v.切(割、削),(直线等)相交,剪,截,刺穿,刺痛,删节,开辟。", 0],
+        ["put", "vt.放,摆,移动,提出,赋予;vi.出发,航行,发芽;n.掷,笨蛋,怪人f。", 0],
+        ["hut", "n.小屋,棚屋。", 0],
+        ["out", "a.外面的,出局的;ad.在外,明显地;n.外面,外出,外观;vt.赶出,击倒,。", 0],
+        ["rut", "n.车辙,常轨,定例,惯例;v.在...形成车辙。", 0],
+        ["wag", "vt.摇摆,摇动,饶舌;vi.爱说笑打趣的人,摆动,喋喋不休;n.摇摆,小丑。", 0],
+        ["sag", "v.松弛,下陷,下垂,(物价)下跌,漂流;n.下垂,下陷,物价下跌,随风漂流。", 0],
+        ["nag", "n.老马,驽马,劣等竞赛马,(作坐骑的)矮小马,唠叨;v.不断地唠叨,恼人。", 0],
+        ["gag", "n.塞口物,箝制,讨论终结,张口器,说谎;vt.塞物于...的口中,使窒息。", 0],
+        ["tag", "n.标签,鞋带、绳子等末端的金属物,垂下物;vt.加标签于,紧随,添饰。", 0],
+        ["bag", "n.袋子,猎获物。", 0],
+        ["rag", "n.抹布,碎屑,石板瓦,破旧衣服,少量;vt.揶揄,戏弄,欺负;vi.喧闹。", 0],
+        ["wan", "a.苍白的,无血色的,有倦容的,无力的。", 0],
+        ["man", "n.男人,人类,人,丈夫,雇工;vt.为...配备人手,操纵,在...就位,使振奋。", 0],
+        ["van", "n.有篷货车,先锋,前驱,前卫;vt.用车搬运。", 0],
+        ["ban", "n.禁令;vt.禁止,取缔(书刊等)。", 0],
+        ["tan", "n.鞣酸革,鞣酸革的渣,鞣皮,黄褐色。", 0],
+        ["can", "vt.装进罐中,把食品装罐;n.罐头,铁罐;conj.能,可以。", 0],
+        ["fan", "n.扇子,鼓风机,迷,狂热者,爱好者;vt.煽动,吹拂;vi.飘动,成扇形散开。", 0],
+        ["pan", "n.平底锅,盘子,面板。", 0],
+        ["rat", "n.老鼠。", 0],
+        ["eat", "v.吃,腐蚀。", 0],
+        ["fat", "n.脂肪,肥肉;a.肥大的,丰满的,肥的,胖的,油腻的;vt.养肥;vi.长肥。", 0],
+        ["pat", "n.轻拍,轻击,轻拍声;a.适当的,合时宜的。", 0],
+        ["cat", "n.猫。", 0],
+        ["hat", "n.帽子;vt.戴帽子。", 0],
+        ["mat", "n.席子,垫子;v.铺席子。", 0],
+        ["vat", "n.(装液体的)大桶,大缸(尤指染缸);vt.装入大桶,在大桶里处理。", 0],
+        ["caw", "n.乌鸦的叫声;vi.发出鸦叫声。", 0],
+        ["raw", "n.生肉,擦伤处,身上的痛处;a.未加工的,生疏的;vt.擦伤。", 0],
+        ["maw", "n.动物的胃。", 0],
+        ["jaw", "n.{解}颚,颌,下巴(用复数),(山谷、海峡等的)狭窄的入口。", 0],
+        ["saw", "n.锯;v.锯;vbl.see的过去式。", 0],
+        ["yaw", "v.偏航,左右摇转。", 0],
+        ["paw", "n.手掌,手爪;v.以蹄扒地,抓,笨拙地使用,费力地前进,(人)用手笨拙地摸。", 0],
+        ["law", "n.法律,诉讼,法学,法治,司法界,规律;v.对...起诉,控告。", 0],
+        ["jew", "n.犹太人,犹太教徒。", 0],
+        ["hew", "v.砍伐,砍倒,砍成,切细,劈开。", 0],
+        ["few", "n.少数的人{物};a.很少的,少数的,几个的。", 0],
+        ["yew", "n.紫杉,紫杉木,红豆杉。", 0],
+        ["pew", "n.教堂内的靠背长凳;vt.排座位。", 0],
+        ["new", "a.新的,初见的,更新的;ad.新近。", 0],
+        ["dew", "n.露,小粒珠,爽快,清新。", 0],
+        ["sew", "v.缝制,缝纫,缝合。", 0],
+        ["dig", "v.掘,挖,钻研,搜集。", 0],
+        ["rig", "n.索具装备,钻探设备,钻探平台,钻塔;v.装上索具,配备,装配。", 0],
+        ["jig", "n.快步舞,快步舞曲,带锤子的钓钩,夹具;v.乱跳,加工用钩钓鱼,选筛。", 0],
+        ["gig", "n.旋转物;v.乘轻便双轮马车。", 0],
+        ["big", "a.大的,重要的,量大的,重要的;ad.夸大地,顺利。", 0],
+        ["pig", "n.猪,猪肉,贪婪的人;v.生小猪,贪婪地吃。", 0],
+        ["wig", "n.假发。", 0],
+        ["fig", "n.{植}无花果,无花果树,无价值的东西;vt.打扮,使马跑快。", 0],
+        ["tin", "n.{化}锡,马口铁,罐;vt.涂锡于;a.锡制的。", 0],
+        ["bin", "n.箱柜,{计}二进制文件的扩展名。", 0],
+        ["win", "vt.获得,赢得,博得,(在...中)获胜,努力争取,到达,达到,说服,提炼{取}。", 0],
+        ["gin", "n.陷阱,起重装,轧棉机,杜松子酒;v.轧。", 0],
+        ["pin", "n.钉,销,栓,大头针,别针,饰针;vt.钉住,别住,阻止,扣牢,止住,牵制。", 0],
+        ["din", "n.喧嚣;v.絮絮不休地说,喧闹。", 0],
+        ["kin", "n.家属(集合称),亲戚,同族,血缘关系,家族;a.有亲属关系的。", 0],
+        ["sin", "n.{俗}违背习俗,不合情理之事,过失,罪过,{数学}正弦函数", 0],
+        ["zip", "n.拉链,嘘嘘声,尖啸声,活力;v.拉开或拉上。", 0],
+        ["gip", "n.吉普赛人{语}, 流浪者。", 0],
+        ["fip", "n.(=fippenny bit)<美>五便士币(1857年之前曾在美国流通的西班牙银白币)。", 0],
+        ["lip", "n.嘴唇,唇缘。", 0],
+        ["sip", "v.吸吮。", 0],
+        ["hip", "n.臀,蔷薇果,忧郁;a.熟悉内情的;vt.使忧郁,给（屋顶）造屋脊。", 0],
+        ["rip", "v.撕,剥,劈,锯,裂开,撕裂;n.裂口,裂缝。", 0],
+        ["pip", "n.果仁, 种子, 牌点, {口}小毛病;vt.破壳而出。", 0],
+        ["kip", "n.小牛皮, 睡觉, 床, 千磅。", 0],
+        ["dip", "v.浸,蘸,沾。", 0],
+        ["nip", "n.捏,夹,(寒冷)刺骨,小饮;vt.捏,夹,冻伤,剪断;vi.夹,捏,刺骨。", 0],
+        ["yip", "n.犬吠, 叫喊声。", 0],
+        ["tip", "n.顶,尖端,梢,倾斜,小费,秘密消息;vt.使倾斜,使翻倒,暗示,给小费", 0],
+        ["kit", "n.成套工具,用具包,工具箱,成套用具。", 0],
+        ["bit", "n.一点点,少量,片刻,马嚼子,辅币;vt.上马嚼子,控制;vbl.咬;n.{计}位,比特。", 0],
+        ["wit", "n.智力,才智,智能。", 0],
+        ["sit", "v.(使)就座,(使)坐。", 0],
+        ["fit", "a.合适的;n.(病的)发作,惊厥,(婴儿的)惊风,(感情等的)突发,一时高兴。", 0],
+        ["pit", "n.深坑,深渊,陷阱,（物体或人体表面上的）凹陷;vt.窖藏,使凹下。", 0],
+        ["hit", "n.打击,打,碰撞,讽刺,(演出等)成功;v.打,打击,碰撞,击中。", 0],
+        ["git", "n.饭桶,无用的人", 0],
+        ["gun", "n.炮,枪,<美>手枪,油门;vi.用枪射击;vt.向...开枪,开大油门。", 0],
+        ["tun", "n.大酒桶,发酵桶;vt.装入大桶。", 0],
+        ["bun", "n.小圆面包,曲卷(或结)状的头发。", 0],
+        ["nun", "n.修女,尼姑。", 0],
+        ["pun", "n.双关语;vi.说双关语;vt.用双关语。", 0],
+        ["fun", "n.娱乐,玩笑,嬉笑,有趣的人或事物;vi.开玩笑;a.供娱乐用的。", 0],
+        ["run", "n.跑,赛跑,奔跑,运转,趋向;vi.跑,奔,逃跑,竞选,跑步,蔓延,进行,行驶f", 0],
+        ["pen", "n.钢笔,围栏,围圈,作家;vt.写,关入栏中。", 0],
+        ["ten", "num.十,十个。", 0],
+        ["yen", "n.日圆(日本的币制单位),<美口>瘾;vi.渴望。", 0],
+        ["fen", "n.沼泽,沼池。", 0],
+        ["den", "n.兽穴,洞穴,(舒适的)私室(作学习或办公用)。", 0],
+        ["hen", "n.母鸡,雌鸟。", 0],
+        ["ken", "n.知道,认识,眼界,知识范围;v.知道,认识。", 0],
+        ["god", "n.神,上帝,神像,偶像;vt.使神化。", 0],
+        ["mod", "a.时髦的。", 0],
+        ["tod", "n.托德(男名)。", 0],
+        ["nod", "v.点头,点...;n.点头。", 0],
+        ["cod", "n.鳕;cashondelivery{商}货到付款。", 0],
+        ["pod", "n.密集小群,扁豆层,豆荚,蚕茧;vi.结荚,生荚。", 0],
+        ["rod", "n.杆,棒", 0],
+        ["doe", "n.母鹿,雌兔等。", 0],
+        ["toe", "n.趾,脚趾,足尖;vt.以趾踏触,用脚尖走;vi.动脚尖。", 0],
+        ["foe", "n.反对者,敌人,危害物。", 0],
+        ["woe", "n.悲哀。", 0],
+        ["joe", "n.乔(男名)。", 0],
+        ["hoe", "n.锄头;v.用锄耕地,锄。", 0],
+        ["roe", "n.鱼子,雄鱼精", 0],
+        ["dog", "n.狗,猎犬,卑鄙的人。", 0],
+        ["bog", "n.沼泽,湿地,泥;v.使陷于泥。", 0],
+        ["jog", "n.凹凸,不整齐,轻推,暗示,漫步;v.蹒跚行走。", 0],
+        ["fog", "n.霭,烟雾,昏迷,模糊,朦胧,困惑,枯草。", 0],
+        ["cog", "n.齿轮的嵌齿,轮牙。", 0],
+        ["log", "v.砍倒,航行,伐木,记载于航海日志中;n.木料,原木。", 0],
+        ["tog", "n.衣服;vt.给穿上;vi.<口>穿衣, 打扮。", 0],
+        ["nog", "n.(嵌入墙内以支持钉子的)木钉, 根株, 支架;vt.支撑, 钉。", 0],
+        ["mog", "vi.撤走。", 0],
+        ["hog", "n.肥(公)猪, 贪婪者;v.(使)拱起", 0],
+        ["jug", "n.水壶,监牢,{象声}夜莺的叫声;vt.放入壶中,炖,关押;vi.模仿夜莺叫。", 0],
+        ["mug", "n.(有柄的)大杯,脸, 嘴,下巴,装怪相的脸。", 0],
+        ["bug", "n.小虫,臭虫;v.装置窃听器,打扰。", 0],
+        ["rug", "n.(小)地毯,垫子。", 0],
+        ["tug", "v.用力拖,吃力地搬运,苦干;n.拖,苦干,拖船,(牵引用的)绳索。", 0],
+        ["lug", "v.拖拉;n.接线片", 0],
+        ["aid", "n.帮助,援助,帮助者,助手,有帮助的事物;vt.资助,援助,帮助。", 0],
+        ["bid", "vt.出价,投标,祝愿,命令,吩咐;n.出价,投标;v.支付。", 0],
+        ["kid", "n.哄骗,取笑,开玩笑,小孩,小山羊;v.哄骗,取笑,开玩笑,欺骗。", 0],
+        ["rid", "vt.使摆脱,使去掉。", 0],
+        ["mid", "a.中央的,中部的,中间的。", 0],
+        ["lid", "n.盖子,<美口>限制,眼睑;vt.给...盖盖子", 0],
+        ["job", "n.工作,零活,<口>职位,事情;vi.做零工,打杂,做股票经纪,假公济私。", 0],
+        ["bob", "n.鲍勃(男名),振动,短发。", 0],
+        ["sob", "v.哭诉,(风等)发呜咽声,哭泣;n.呜咽,哭泣。", 0],
+        ["mob", "n.(集合词)暴徒,乌合之众,(盗贼等的)一群;v.成群暴动,聚众滋扰。", 0],
+        ["rob", "v.抢夺,抢掠,剥夺。", 0],
+        ["fob", "n.(男裤上的)表袋,(怀表上的)短表链;vt.骗人,混骗", 0],
+        ["don", "n.先生,阁下,西班牙人,大人物,要人。", 0],
+        ["son", "n.儿子,女婿,(长者对年轻男子的称呼)孩子。", 0],
+        ["yon", "pron.彼处之人或物;a.彼处的,那边的。", 0],
+        ["con", "vt.记诵,精读;ad.反对地,反面;n.反对票,反对论,{医}肺病。", 0],
+        ["ton", "n.吨,大量,许多。", 0],
+        ["ion", "n.离子,", 0],
+        ["mop", "n.拖把(俗称地拖),洗碗;v.用拖把拖洗,擦,抹,扫荡。", 0],
+        ["lop", "vt.修剪,砍伐,斩;vi.下垂,闲荡;a.垂下的;n.砍下的部分,垂耳兔。", 0],
+        ["cop", "n.警官,巡警,{纺}管纱;vt.抓住。", 0],
+        ["pop", "n.取出,砰然声,枪击,流行乐曲,流行艺术;a.流行的,热门的,通俗的。", 0],
+        ["hop", "v.单脚跳,(鸟,蛙等)跳跃;n.蛇麻草。", 0],
+        ["top", "n.顶部,顶端,极点,顶蓬,陀螺,上部,盖子;a.最高的,顶上的,头等的", 0],
+        ["coy", "a.腼腆的,怕羞的,卖弄风情的。", 0],
+        ["roy", "n.罗伊（男子名）。", 0],
+        ["joy", "n.欢乐,喜悦,快乐,乐事,乐趣;v.高兴。", 0],
+        ["soy", "n.酱油,大豆。", 0],
+        ["toy", "n.玩具。", 0],
+        ["boy", "n.男孩,儿子,孩子气的人,男仆", 0],
+        ["fry", "n.油炸食物,油炸锅,鱼苗,鱼秧;v.油炸,油煎。", 0],
+        ["cry", "vi.哭,流泪;v.叫,喊;n.哭泣,哭声,叫喊,喊声。", 0],
+        ["dry", "a.干的,干燥的,口渴的;vt.(使)干燥,(使)变干;v.干燥。", 0],
+        ["wry", "a.扭歪的,歪曲的,歪斜的;v.扭曲,扭歪。", 0],
+        ["pry", "n.打听,爱打听的人,查探;v.窥伺,刺探。", 0],
+        ["cub", "n.幼兽,不懂规矩的年轻人。", 0],
+        ["pub", "n.酒馆,客栈。", 0],
+        ["tub", "n.浴盆。", 0],
+        ["dub", "vt.{电影}配音,轻点,授予称号,打击;n.鼓声,笨蛋。", 0],
+        ["rub", "n.阻碍,伤痛处,摩擦;v.揉,搓,磨擦,磨光。", 0],
+        ["hub", "n.毂,木片,中心;n.网络集线器,网络中心", 0],
+        ["bum", "n.游荡者,闹饮;a.无价值的;vi.过游民生活,免费得到,流浪;vt.乞讨。", 0],
+        ["mum", "n.{植}(=chrysanthemum)菊花,沉默;a.沉默的;vi.演哑剧,int.别说话！", 0],
+        ["rum", "n.浪姆酒(用甘蔗或糖蜜等酿制的一种甜酒);a.古怪的,奇特的。", 0],
+        ["hum", "v.嗡嗡叫,哼;n.嗡嗡声,吵杂声。", 0],
+        ["gum", "n.齿龈,树脂,橡胶,橡胶树,口香糖,香口胶,泡泡糖。", 0],
+        ["sum", "n.总数,和,金额,算术题", 0],
+        ["cab", "n.出租车,出租马车,驾驶室;vi.乘出租马车。", 0],
+        ["lab", "n.实验室,研究室。", 0],
+        ["dab", "n.少量,轻拍,比目鱼,熟手;v.轻拍,轻擦,轻敷,涂。", 0],
+        ["jab", "v.猛刺;n.刺戳。", 0],
+        ["tab", "n.制表,标号,tab键,标签,制表符,小报,帐单;vt.在...饰以小垂片", 0],
+        ["see", "v.看,看见,了解,领会,注意,留心,经历,阅历。", 0],
+        ["bee", "n.蜜蜂。", 0],
+        ["wee", "a.很少的,微小的,很早的;n.一点点,一会儿,极小的空间。", 0],
+        ["lee", "n.庇萌,保护,庇护所,背风处;a.避风的,背风的,下风的,保护的。", 0],
+        ["fee", "n.费(会费、学费等),酬金", 0],
+        ["pie", "n.馅饼,杂乱,喜鹊,爱说话的人;vt.弄乱。", 0],
+        ["tie", "n.带子,线,鞋带,不分胜负,领带;vt.系,打结,扎,约束,与...成平局f。", 0],
+        ["lie", "vi.躺,平放,展现,展开,位于;v.说谎,躺;n.谎话,谎言。", 0],
+        ["vie", "v.竞争,竞赛。", 0],
+        ["die", "vi.死亡,消逝,平息,渴望,漠然,熄灭;vt.死;n.骰子,钢型,硬模", 0],
+        ["sue", "n.苏(人名),控告,向„请求,请愿。", 0],
+        ["rue", "n.<古>懊悔,后悔,{植}芸香;v.后悔,悲伤,懊悔。", 0],
+        ["cue", "n.暗示,提示,球杆。", 0],
+        ["hue", "n.色调,样子,颜色,色彩,叫声,大声叫喊,大声反对。", 0],
+        ["due", "n.应得物、权力,{复}应付款;a.应得的,应付的,正当的,预期的", 0],
+        ["rye", "n.裸麦,黑麦,绅士,吉普赛绅士。", 0],
+        ["dye", "n.染料,染色;vt.染;v.染。", 0],
+        ["bye", "n.枝节的问题,不重要或次要的东西;a.附属的。", 0],
+        ["aye", "n.赞成票,投赞成票者,int.是", 0],
+        ["age", "n.年龄,成年,使用年限,同时期的人,时代;v.变老,上年纪,成熟。", 0],
+        ["are", "prep.是,在,公亩。", 0],
+        ["aye", "n.赞成票,投赞成票者,int.是。", 0],
+        ["awe", "n.敬畏;vt.敬畏。", 0],
+        ["ape", "n.类人猿,无尾猿,善于模仿的人。", 0],
+        ["axe", "n.斧,(经费的)大削减。", 0],
+        ["ale", "n.(淡色)浓啤酒(约含百分之六的酒精),乡下啤酒节", 0],
+        ["shy", "a.怕羞的,畏缩的,害羞的;vi.(马)惊逃,惊跳。", 0],
+        ["sly", "a.狡猾的。", 0],
+        ["spy", "n.间谍。", 0],
+        ["say", "v.说,讲,背诵,念,表示,比方说,假定;n.话语,想说的意见,发言权。", 0],
+        ["sty", "n.猪栏,猪圈;vi.住在猪圈里;vt.关入猪栏。", 0],
+        ["sky", "n.天空,天气,气候,天堂,天国。", 0],
+        ["soy", "n.酱油,黄豆,大豆,", 0],
+        ["bog", "n.沼泽,<英俚>厕所;vt.使陷于泥沼;vi.陷于泥沼。", 0],
+        ["big", "a.大的,重要的,量大的,重要的;ad.夸大地,顺利。", 0],
+        ["bag", "n.袋子,猎获物。", 0],
+        ["beg", "v.请求,乞求。", 0],
+        ["bug", "n.小虫,臭虫;v.装置窃听器,打扰", 0],
+        ["hmm", "int.哼!(踌躇等)。", 0],
+        ["him", "pron.他。", 0],
+        ["hum", "v.嗡嗡叫,哼,以鼻哼歌;n.嗡嗡声,吵杂声。", 0],
+        ["ham", "n.火腿,大腿的后部,笨拙的演员;a.过火的,做作的;v.演得过火。", 0],
+        ["hem", "n.边,缘,摺边,布边;v.给...缝边,包围", 0],
+        ["rear", "n.后面,背后,后方;a.后面的,背面的,后方的;vt.培养,举起;vi.暴跳,用后腿站起。", 0],
+        ["pear", "n.梨子,梨树。", 0],
+        ["hear", "vt.听到,听说,听取,审理,允许;vi.听见,听到。", 0],
+        ["dear", "a.昂贵的,亲爱的,int.{表示惊讶,怜悯等},Ｏｈ,～！", 0],
+        ["tear", "n.破处,眼泪,扯,飞奔,激怒;v.流泪,撕破,猛冲,被撕破,扯。", 0],
+        ["year", "n.年,年龄,年岁。", 0],
+        ["fear", "n.恐怖,害怕,担心,敬畏;v.害怕,畏惧,为...担心,敬畏(神等)。", 0],
+        ["wear", "vt.穿,戴;v.(～out)磨损,用旧,(～out)穿着。", 0],
+        ["bear", "n.熊;v.负担,忍受,带给,具有,挤,向。", 0],
+        ["near", "a.亲近的,近;ad.(时间,空间方面)近,不远;prep.在...近旁;v.接近。", 0],
+        ["gear", "n.齿轮,传动装置;v.调整,(使)适合,换档。", 0],
+        ["sear", "n.烙印,灼痕;a.烤焦的,枯萎的;vt.烤焦,使枯萎;vi.凋谢,干枯", 0],
+        ["jail", "n.监狱;vt.监禁。", 0],
+        ["bail", "n.保释,保证金,保证人;v.保释,舀水。", 0],
+        ["hail", "n.冰雹,致敬,招呼;vt.向...欢呼,致敬,招呼,使象下雹样落下,int.万岁,欢迎。", 0],
+        ["fail", "vi.失败,不及格,忘记;vt.使失望,舍弃,辜负,不及格;n.不及格,不及格者。", 0],
+        ["wail", "n.悲叹,哀号,痛快;vi.悲叹,哀号,嚎啕;vt.悲痛(某人的悲惨遭遇)。", 0],
+        ["sail", "v.航行(于);vi.启航,开船;n.帆,篷,航行,帆船。", 0],
+        ["tail", "n.尾部,尾巴,尾状物,踪迹,排的长队;a.在后面的,从后面而来的,。", 0],
+        ["rail", "n.横杆,围栏,扶手,铁轨;vt.以横木围栏,铺铁轨;vi.责骂,抱怨。", 0],
+        ["nail", "n.指甲,钉,钉子;vt.钉,将...钉牢。", 0],
+        ["pail", "n.桶,提桶。", 0],
+        ["mail", "n.邮件,邮政,盔甲;vt.邮寄,给...穿盔甲", 0],
+        ["hill", "n.(姓)希尔,,小山,丘陵,坡路。", 0],
+        ["rill", "n.小河,小溪;vi.小河般流。", 0],
+        ["till", "prep.直到,迄;conj.直到...为止;vt.耕种;n.(商店)铁柜,放钱的抽屉。", 0],
+        ["mill", "n.磨坊,磨粉机,制造厂;vt.碾磨,磨细,搅拌;vi.乱转,被碾磨。", 0],
+        ["bill", "n.帐单,钞票,票据,清单,议案,法案,广告;vt.用海报宣传,给...开帐单。", 0],
+        ["jill", "n.女人,少女。", 0],
+        ["pill", "n.药丸,口服避孕药,弹丸。", 0],
+        ["fill", "vt.装满,弥漫,供给,满足;vi.充满;n.满足,饱,充分;v.填充。", 0],
+        ["will", "n.意志,决心,意向,遗嘱;v.aux.将,愿意,必须。", 0],
+        ["gill", "n.腮,腮下肉,峡谷,峡流,锶;v.用刺网捕鱼。", 0],
+        ["kill", "v.杀死,毁掉,杀伤", 0],
+        ["care", "n.挂念,照料,管理,注意;v.关心,忧虑,喜欢。", 0],
+        ["mare", "n.母马,母驴,月球或火星等表面阴暗区。", 0],
+        ["hare", "n.野兔。", 0],
+        ["tare", "n.{植}野碗豆,毒麦,皮重;vt.称皮重。", 0],
+        ["rare", "a.稀罕的,杰出的,珍贵的,(肉类)半熟的;ad.非常。", 0],
+        ["bare", "a.赤裸的,无遮蔽的,空的;vt.使赤裸,露出。", 0],
+        ["ware", "n.陶器,器皿。", 0],
+        ["pare", "vt.剥,削,修,削减,消灭。", 0],
+        ["fare", "n.费用,旅客,食物;vi.遭遇,进展,进步,经营,过活。", 0],
+        ["dare", "n.挑战;vi.敢,胆敢;vt.敢冒,不惧,挑逗„,挑战,", 0],
+        ["late", "a.迟的,晚的,晚期的,先前的,已故的,前任的。", 0],
+        ["rate", "n.比例,速度,价格,评价,等级,地方税,情况。", 0],
+        ["hate", "n.憎恨,憎恶,憎恨之物;v.憎恨,厌恶。", 0],
+        ["fate", "n.命运,运气,因缘,因果,毁灭。", 0],
+        ["bate", "v.压制,减弱。", 0],
+        ["mate", "v.使紧密结合,使输棋,成伙伴,成配偶,逼攻。", 0],
+        ["gate", "n.门,阀,闸,扉,狭路,水门,城门,隘口。", 0],
+        ["date", "n.日期,年代,约会,枣椰子的果实。", 0],
+        ["kate", "n.凯特(女名)。", 0],
+        ["west", "n.西方,西部;a.西的,西方的;ad.向西方。", 0],
+        ["zest", "n.风味,强烈的兴趣,热情,热心;vt.给...调味。", 0],
+        ["jest", "n.笑话,俏皮话;vi.嘲笑,开玩笑;vt.嘲笑。", 0],
+        ["best", "a.最好的;ad.最好地,最,极;n.最佳状态或作品,最好的东西。", 0],
+        ["rest", "n.休息,静止,支持物,其余;vi.休息,静止,搁在,保持(状态);vt.使休息,使静止f。", 0],
+        ["nest", "n.巢,窝,隐匿处,舒适的地方,一套器具;vi.筑巢,找鸟巢;vt.使套入。", 0],
+        ["test", "n.测试,试验,检验;v.测试,试验,检验。", 0],
+        ["lest", "conj.唯恐,以免,免得,(用于fear,be afraid之后,等于that)。", 0],
+        ["pest", "n.有害物,害虫,讨厌的人。", 0],
+        ["vest", "n.汗衫,背心,内衣;vt.使穿衣服,授予;vi.穿衣服,归属", 0],
+        ["sake", "n.为了...之好处,出于对...的兴趣,缘故,理由,日本米酒。", 0],
+        ["take", "v.拿,拿走,取,抓,占领,获得,接受,感受;n.捕获量。", 0],
+        ["make", "vt.制造,使成为,产生,构成;vi.被制造,被处理;n.制造,构造,性情。", 0],
+        ["fake", "n.假货,欺骗;a.假的;vt.伪造,赝造,捏造,假造,仿造;vi.伪装。", 0],
+        ["lake", "n.湖泊,湖水,池,一种深红色的颜料,深红色。", 0],
+        ["rake", "n.耙子,斜度,向船尾的倾斜,放荡者;v.搜索,掠过,用耙子耙,(使)倾斜。", 0],
+        ["wake", "vt.叫醒,激发;vi.醒来,警觉,振奋;n.醒,守夜,尾迹,守丧。", 0],
+        ["bake", "v.烤,烘,焙,烧硬。", 0],
+        ["cake", "n.蛋糕,饼,块", 0],
+        ["gale", "n.大风,(突发的)一阵。", 0],
+        ["bale", "n.大包,大捆;vt.打包,捆包,包装,灾难,痛苦,悲哀。", 0],
+        ["hale", "a.强壮的,健壮的（尤指老人）,矍铄的;vt.<古>强拉,硬拖。", 0],
+        ["male", "a.男的,雄的,男性的;n.男人。", 0],
+        ["pale", "n.栅栏,界线;a.苍白的,无力的;vi.变苍白,失色;vt.使变苍白,用栅栏围。", 0],
+        ["vale", "n.别离,告别,山谷,溪谷,int.再见,再会。", 0],
+        ["dale", "n.宽谷,溪谷。", 0],
+        ["sale", "n.出售,卖出,贱卖,廉价出售,销路,销售额。", 0],
+        ["tale", "n.故事,坏话,流言蜚语,谣言,叙述,传说", 0],
+        ["dell", "n.(两边有树的)小谷,小溪谷,幽谷。", 0],
+        ["well", "ad.好,令人满意地,完全地,甚,颇,有理由地,容易地;n.(水)井,(源)泉,池,来源。", 0],
+        ["bell", "n.钟,钟形物,铃{声},鹿的鸣叫声;v.系铃于。", 0],
+        ["sell", "v.出售,卖,销售。", 0],
+        ["cell", "n.单元,细胞,蜂房,(尤指监狱或寺院的)单人房间,电池,小室。", 0],
+        ["yell", "vi.大叫,忍不住笑,呼喊;vt.叫着说;n.叫声,喊声。", 0],
+        ["tell", "vt.告诉,说,吩咐,断定;vi.讲述,泄密,告发,表明;n.<方>讲的事,传闻。", 0],
+        ["fell", "vbl.fall的过去式;vt.击倒,砍伐;n.一季所伐的木材,;a.凶猛的,可怕的。", 0],
+        ["hell", "n.地狱,苦境,阴间,地狱中的人,训斥;vi.狂饮,飞驰,int.该死!", 0],
+        ["lend", "v.借出,借助,贷出,增添,赋予,出力。", 0],
+        ["rend", "v.割裂,分离,搅乱,伤心,抢去,强夺。", 0],
+        ["fend", "vt.保护,谋生,供养,挡开;vi.<英>努力,力争,供养,照料。", 0],
+        ["tend", "vi.趋向,往往是;vt.照管,护理。", 0],
+        ["mend", "n.改进,补丁,修理部分,好转;vt.改进,修理,修补;vi.好转,改善,改正。", 0],
+        ["bend", "n.弯曲,曲身,绳结的一种;v.弯,拉,使屈服。", 0],
+        ["send", "n.波浪的推动力,船之纵摇;v.运送,派,遣。", 0],
+        ["wend", "vi.行,走;vt.往,回(家),行,走", 0],
+        ["vent", "n.通风孔,出烟孔,出口,(感情等的)发泄;v.放出,排出,发泄。", 0],
+        ["dent", "n.凹,凹痕,(齿轮的)齿,弱点;v.使凹下,凹进,削弱。", 0],
+        ["tent", "n.帐篷,住处,塞入伤口用之棉花。", 0],
+        ["bent", "n.倾向,嗜好,草梗,杂草,丛生石楠子的旷野。", 0],
+        ["kent", "n.牧杖,篙;v.为ken之过去式及过去分词,英国东南部州名。", 0],
+        ["rent", "n.地租,租金,收益,出租房屋,裂缝,峡谷。", 0],
+        ["cent", "n.分(等于美金一元的百分之)。", 0],
+        ["lent", "n.(基督教的)四旬斋。", 0],
+        ["went", "v.go的过去式,", 0],
+        ["full", "a.饱满的,十分的,饱的,完全的,肥的,浓的。", 0],
+        ["bull", "n.(姓)布尔,{动}公牛, 粗壮如牛的人。", 0],
+        ["pull", "v.拉,拖,拔;n.拉,拖,拉力,牵引力。", 0],
+        ["hull", "n.壳,皮,荚,蒂,覆盖物,衣服,船身,机身。", 0],
+        ["lull", "n.间歇,风平浪静,小康,暂停,镇静;v.催眠。", 0],
+        ["null", "a.无效力的,无效的,无价值的,等于零的;n.零,空,零迅号。", 0],
+        ["mull", "n.漂白细软薄布,混乱;vt.研磨,深思;vi.温热。", 0],
+        ["cull", "n.被挑剩的淘汰之物,傻瓜,蠢蛋;v.采,摘,拣,挑选。", 0],
+        ["dull", "a.感觉或理解迟钝的,呆滞的,阴暗的;vt.使迟钝,使阴暗,缓和;vi.变迟钝,减少", 0],
+        ["rack", "n.架,行李架,拷问台;vt.放在架上,折磨,加以拷问,使痛苦,榨取。", 0],
+        ["pack", "n.包裹,一副,包装;vt.包装,捆扎,塞满,压紧;vi.包装货物,挤,群集,被包装。", 0],
+        ["tack", "n.大头钉,粗缝,行动方针;vt.以大头针钉住,附加;vi.抢风航行,作之字形移动。", 0],
+        ["sack", "n.大袋,麻布袋,布袋装,洗劫;vt.解雇,装入袋,洗劫,就寝。", 0],
+        ["hack", "n.出租车司机,晾棚,切口,割痕,割伤,干咳,出租;v.砍。", 0],
+        ["jack", "n.杰克(男名)。", 0],
+        ["lack", "n.缺乏,短缺的东西;vt.缺乏,没有,需要;vi.缺乏,没有。", 0],
+        ["back", "a.后面的,早过去的;ad.向后地;n.背部,后面;v.后退,支持", 0],
+        ["hall", "n.走廊,玄关,会馆,办事处,大厅,学院。", 0],
+        ["wall", "n.墙壁,围墙,似墙之物;a.墙壁的;vt.围以墙。", 0],
+        ["call", "n.喊声,叫声,号召,访问,叫牌,通话;v.呼叫,召集,称呼,打电话。", 0],
+        ["ball", "n.球,球状物,子弹,舞会,尽情地玩。", 0],
+        ["mall", "n.购物商场,商店街,林荫道,铁圈球。", 0],
+        ["tall", "a.高的,长的,夸大的;ad.<俚>夸大地。", 0],
+        ["fall", "n.秋天,落下,瀑布,降低,堕落;vi.倒下,落下,来临,失守,垮台,阵亡。", 0],
+        ["jane", "n.简(女子名)。", 0],
+        ["sane", "a.心智健全的,头脑清楚的,稳健的,理智的。", 0],
+        ["dane", "n.丹麦人。", 0],
+        ["pane", "n.长方块,尤指窗格,窗格玻璃,边,面。", 0],
+        ["cane", "n.细长的茎,藤条,甘蔗;vt.以杖击,以藤编制。", 0],
+        ["lane", "n.（乡间）小路,巷,里弄,狭窄的通道,航线,小径。", 0],
+        ["bane", "n.祸根,祸害。", 0],
+        ["wane", "vi.变小,亏缺,衰落,退潮,消逝,呈下弦;n.月亏,月亏期,衰退,衰退期,衰弱", 0],
+        ["dash", "n.少量,冲撞,破折号,锐气;vi.猛掷,冲撞;vt.泼溅,使猛撞,搀和,使沮丧,匆忙完成。", 0],
+        ["gash", "n.砍得很深的伤口,很深的裂缝;v.(使)负深伤,划开,砍入很深。", 0],
+        ["sash", "n.框格,肩带,腰带,飒饰,窗扇,装饰带;vt.装以窗框,系上腰带。", 0],
+        ["lash", "n.鞭子,睫毛,责骂,讽刺;vt.鞭打,摆动,扎捆,讽刺;vi.猛击,急速甩动。", 0],
+        ["cash", "n.钱,现钞,(古中国用的)小铜钱;v.兑现。", 0],
+        ["mash", "n.麦芽汁,碎麦米,糊状物,被爱慕的人;v.捣碎。", 0],
+        ["wash", "n.洗,洗涤,洗涤剂,冲积物;vt.洗,洗涤,冲出,镀金于;vi.洗涤f。", 0],
+        ["rash", "n.发疹,疡肿;a.轻率的,卤莽的,性急的,", 0],
+        ["nave", "n.教堂的中殿,中央广场,车轮的中心部。", 0],
+        ["cave", "n.洞穴,窑洞;vi.凹陷,投降;vt.挖洞,使凹陷。", 0],
+        ["pave", "v.铺{柏油,石砖等},铺设。", 0],
+        ["save", "vt.解救,保全,节省,储蓄;vi.挽救,节省,救球;prep.除...之外。", 0],
+        ["lave", "vt.为沐浴,洗;n.<苏格兰>剩余物。", 0],
+        ["have", "vt.有,持有,拿,从事(某事);aux.已经。", 0],
+        ["rave", "n.过分之吹嘘,迷恋,车辆等边上之栏板;v.咆哮。", 0],
+        ["wave", "n.波,波浪,(挥手)示意,致意;vi.(挥手)示意,致意,波动,飘动,摇动", 0],
+        ["zeal", "n.热心,热情,热忱。", 0],
+        ["veal", "n.小牛肉,幼小的菜牛;vt.宰小牛。", 0],
+        ["meal", "n.一餐,一顿饭,膳食,(谷类的)粗粉;vi.进餐。", 0],
+        ["real", "a.真的,真实的,不动产的。", 0],
+        ["heal", "v.治愈,痊愈,复原,和解。", 0],
+        ["peal", "n.隆隆声,响亮的钟声,很响的铃声;vt.使大声鸣响;vi.隆隆地响。", 0],
+        ["seal", "n.封铅,封条,印,图章,密封;vt.封,密封;n.海豹,海豹毛皮。", 0],
+        ["deal", "n.交易,(政治)密约,待遇,份量;vi.处理,做生意;vt.分给(out),给予", 0],
+        ["dick", "n.迪克(男名)。", 0],
+        ["kick", "n.踢,反对,{足球}球员,刺激,后坐力;v.踢。", 0],
+        ["pick", "n.精选,掘,十字镐,鹤嘴锄;v.摘,掘,凿,挑选,挖,挑剔,拾取。", 0],
+        ["nick", "n.刻痕,缺口;vt.刻痕于,挑毛病;vi.阻击。", 0],
+        ["wick", "n.蜡烛心,灯芯,油绳;vt.通过毛细作用带走。", 0],
+        ["lick", "n.舔,少许,打;vt.舔,卷过,鞭打,克服,征服;vi.轻轻拍打。", 0],
+        ["tick", "n.滴答声,记号,勾号,扁虱;v.滴答地响,标以记号,作滴答声", 0],
+        ["bile", "n.胆汁,愤怒。", 0],
+        ["mile", "n.英里,较大的距离。", 0],
+        ["nile", "n.尼罗河(非洲东北部河流)。", 0],
+        ["pile", "n.堆,高大建筑,{核}反应堆,{电}电池组;vi.堆起,堆积,挤;vt.堆于,堆叠,。", 0],
+        ["tile", "n.瓦片,瓷砖,缸管,麻将,高礼帽;v.铺瓦,铺砖。", 0],
+        ["file", "n.文件,档案,文件夹,锉刀;vt.把...归档,提出,锉,琢磨;vi.用锉刀锉。", 0],
+        ["vile", "a.卑鄙的,可耻的,恶劣的,可憎的,简陋的,低廉的,坏透的,不足道的。", 0],
+        ["wile", "n.诡计,阴谋,欺骗;vt.欺骗,诱骗", 0],
+        ["vine", "n.葡萄树,蔓生植物(如甜瓜),攀缘植物(如豌豆,蛇麻草),藤,蔓。", 0],
+        ["mine", "pro.我的东西;n.矿场,源泉,宝库,地雷;vt.开采,在...布雷。", 0],
+        ["fine", "a.美好的,优良的,精美的,纤细;n.罚款,罚金,晴天;vt.罚款,精炼,澄清。", 0],
+        ["wine", "n.葡萄酒,果子酒,酒。", 0],
+        ["pine", "n.松树,松木;v.消瘦,憔悴,爱慕,渴望。", 0],
+        ["nine", "num.九。", 0],
+        ["line", "n.绳,索,线路,航线;vt.顺...排列,划线于,使有线条,使起皱纹;vi.排队。", 0],
+        ["dine", "v.用膳,用正餐,招待正餐,供膳,宴请,", 0],
+        ["gone", "a.过去的,失去的,离去的,死去的;vbl.go的过去分词。", 0],
+        ["lone", "a.孤单的,无人烟的,寂寞的,独自的。", 0],
+        ["zone", "n.地区,区域,范围。", 0],
+        ["none", "ad.决不,毫不;pron.一个也没有,毫无。", 0],
+        ["tone", "n.声音,音质,乐音,风气,腔调,色泽,语调。", 0],
+        ["cone", "n.{数、物}锥形物,圆锥体,(松树的)球果;vt.使成锥形。", 0],
+        ["bone", "n.骨;v.剔除。", 0],
+        ["hone", "n.磨刀石;v.用磨刀石磨,", 0],
+        ["fore", "a.在前部的,以前的;ad.在前面,在船头;n.前部,船头;prep.在前。", 0],
+        ["pore", "n.气孔,毛孔,孔隙;v.注视,热烈注视,熟读。", 0],
+        ["more", "a.更多的;n.更多;ad.更,更多,更加,超过,多,大大高于;num.更多。", 0],
+        ["core", "n.果心,木髓,核心,精髓,心型,衬心。", 0],
+        ["lore", "n.(特殊的)学问, (专门的)知识,口头传说,口头传说。", 0],
+        ["bore", "n.令人讨厌的人,怒潮,枪膛,孔;v.使烦扰,钻孔,钻孔。", 0],
+        ["gore", "n.血块,淤血,(帆上缝的)三角形布;vt.缝以补裆,刺伤,顶。", 0],
+        ["sore", "a.疼痛的,痛心的,剧烈的;n.痛的地方,痛处", 0],
+        ]
+
+        if (!window.localStorage) {
+            alert("浏览器不支持localstorage，下次打开需要重新开始");
+        } else {
+            var storage = window.localStorage;
+            if (!storage.hasHistoryData) {
+                storage.data = JSON.stringify(data);
+                storage.hasHistoryData = true;
+            } else {
+                data = JSON.parse(storage.data);
+            }
+        }
+
+        function saveData() {
+            if (storage) {
+                storage.data = JSON.stringify(data);
+            }
+        }
+    </script>
+
+    <style>
+        .container {
+            display: table;
+            height: 100%;
+        }
+
+        /* centered columns styles */
+        .row-centered {
+            text-align: center;
+        }
+
+        .row {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .col-centered {
+            display: inline-block;
+            float: none;
+            text-align: left;
+            margin-right: -4px;
+        }
+
+        @media (max-width: 767px) {
+
+            .col-centered {
+                display: inline-block;
+                float: none;
+                text-align: left;
+                width: 100%;
+                margin-right: -4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row-centered">
+            <div class="col-md-6 col-centered">
+                <!-- 设置模块 -->
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                                <div id="count-time" class="time-item pull-right" style="display: inline;">
+                                    <strong id="hour_show"><s></s>00</strong> 时
+                                    <strong id="minute_show"><s></s>00</strong> 分
+                                    <strong id="second_show"><s></s>00</strong> 秒
+                                    <strong id="ms_show"><s></s>00</strong> 毫秒
+                                </div>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-inline">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">每</span>
+                                        <input id="word" type="number" class="form-control" name="word"
+                                            placeholder="1000" value="1000" />
+                                        <span class="input-group-addon">毫秒显示一个单词</span>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-inline">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">显示计时</span>
+                                        <div id="switch" class="switch" data-on="success" data-off="warning">
+                                            <input type="checkbox" checked />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-inline">
+                                    <div class="input-group">
+                                        <span id="word-count" class="input-group-addon">共 499 个单词</span>
+                                    </div>
+                                </div>
+                                <br />
+                                <button type="button" class="btn btn-success btn-block" onclick="start()">开始</button>
+
+                                <br />
+                                <button id="sort" type="button" class="btn btn-success btn-block"
+                                    onclick="sortByCount()">按知道次数排序并重新开始</button>
+                                <br />
+                                <button id="review" type="button" class="btn btn-success btn-block"
+                                    onclick="review()">从知道次数最多的 30 个单词开始</button>
+                                <br />
+                                <button id="deleteIt" type="button" class="btn btn-warning btn-block"
+                                    onclick="deleteIt()">剔除当前</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 单词展示模块 -->
+                <div class="wall panel panel-warning">
+                    <div class="panel-heading">
+                        <h2 id="no-one" class="panel-title" style="height: 0px"></h2>
+                        <h3 class="keyword">1 2 3 开始！</h3>
+                        <h2 id="word-meaning" class="panel-title"></h2>
+                    </div>
+                    <div class="panel-body">
+                        <button id="iKnowIt" type="button" class="btn btn-info btn-block"
+                            onclick="IKnowIt()">我知道</button>
+                    </div>
+                </div>
+
+                <!-- 统计模块 -->
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    <span class="glyphicon glyphicon-stats"></span>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>单词</th>
+                                            <th>意思</th>
+                                            <th>次数</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script name="设置模块">
+        // 计时器 >>>
+        function letTimeStrLengthBeTwo(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+        function letTimeStrLengthBeThree(i) {
+            if (i < 10) {
+                i = "00" + i;
+            } else if (i < 100) {
+                i = "0" + i;
+            }
+            return i;
+        }
+        var beginDate = new Date().getTime();
+        setInterval(function () {
+            //得到毫秒
+            var nowDate = new Date().getTime()
+            var between = nowDate - beginDate
+            var s = parseInt(between / 1000)
+
+            if (s > 0) {
+                var day = Math.floor(s / 3600 / 24)
+                var hours = Math.floor(s / 3600) - (day * 24)
+                var min = Math.floor(s / 60) - (day * 24 * 60) - (hours * 60)
+                var second = Math.floor(s) - (day * 24 * 3600) - (hours * 3600) - (min * 60)
+                var ms = Math.floor(between) - (day * 24 * 3600 * 1000) - (hours * 3600 * 1000) - (min * 60 * 1000) - (second * 1000)
+
+                $('#hour_show').html(letTimeStrLengthBeTwo(hours));
+                $('#minute_show').html(letTimeStrLengthBeTwo(min));
+                $('#second_show').html(letTimeStrLengthBeTwo(second));
+                $('#ms_show').html(letTimeStrLengthBeThree(ms));
+            }
+        }, 20);
+        // 计时器 <<<
+
+        // 是否打开计时器 >>>
+        $('#switch').on('switch-change', function (e, data) {
+            var check = data.value;
+            if (check) {
+                $('#count-time').css("display", "inline");
+            } else {
+                $('#count-time').css("display", "none");
+            }
+        });
+        // 是否打开计时器 <<<
+
+        function wordCount(count) {
+            document.getElementById("word-count").innerText = "共 " + count + " 个单词";
+        }
+
+        wordCount(data.length);
+
+        function sortByCount() {
+            data = data.sort((i, j) => i[2] - j[2]);
+            currentWordIndex = 0;
+            refreshByCurrentData(data);
+            saveData();
+        }
+
+        function refreshByCurrentData(data) {
+            wordCount(data.length);
+            tb.innerHTML = "";
+            for (var i = 0; i < data.length; i++) {
+                tb.append(getRowData(data[i][0], data[i][1], data[i][2]));
+            }
+        }
+    </script>
+    <script name="单词展示模块和设置模块中单词展示的部分)">
+        var fake = ["不仅如此不仅如此不仅如此不仅如此不仅如此不仅如此不仅如此"];
+        $("#no-one").html(fake[0]);
+        $("#no-one").css("visibility", "hidden");
+
+        var tb = document.getElementById("table-body");
+        var iKnowCurrentWord = false;
+        var currentWordIndex = 0;
+        function resetWordIndex(lastWordIndex) {
+            currentWordIndex = 0;
+        }
+        function getNextWordIndex(lastWordIndex) {
+            // 根据记忆曲线计算下一个要记的单词
+            return (lastWordIndex + 1) % data.length;
+        }
+        $("h3.keyword").fadeOut(100, function () {
+            $(this).html(data[currentWordIndex][0]);
+            document.getElementById("deleteIt").innerHTML = "剔除 " + data[currentWordIndex][0];
+            $(this).fadeIn(100);
+        });
+        $("#word-meaning").fadeOut(100, function () {
+            $(this).html(data[currentWordIndex][1]);
+            $(this).fadeIn(100);
+        });
+        function showWord() {
+            $("h3.keyword").fadeOut(100, function () {
+                $(this).html(data[currentWordIndex][0]);
+                document.getElementById("deleteIt").innerHTML = "剔除 " + data[currentWordIndex][0];
+                $(this).fadeIn(100);
+            });
+            $("#word-meaning").fadeOut(100, function () {
+                $(this).html(data[currentWordIndex][1]);
+                $(this).fadeIn(100);
+            });
+            checkIfIKnowCurrentWord();
+            currentWordIndex = getNextWordIndex(currentWordIndex);
+            changeButton(iKnowCurrentWord);
+        }
+        var startLearning = setInterval(showWord, 1000);
+
+        function start() {
+            resetWordIndex(currentWordIndex);
+            clearInterval(startLearning);
+            var showWordInterval = $("#word").val();
+            startLearning = setInterval(showWord, showWordInterval);
+        }
+
+        function checkIfIKnowCurrentWord() {
+            if (iKnowCurrentWord) {
+                IKnowTheWordAt(currentWordIndex);
+            }
+            iKnowCurrentWord = false;
+        }
+
+        function IKnowTheWordAt(currentWordIndex) {
+            data[currentWordIndex][2]++;
+            tb.children[currentWordIndex].children[2].innerHTML = data[currentWordIndex][2];
+        }
+
+        function changeButton(know) {
+            if (know) {
+                $("#iKnowIt").removeClass("btn-info").addClass("btn-success");
+                document.getElementById("iKnowIt").innerHTML = (data[currentWordIndex][2] + 1) + " 次我知道";
+            } else {
+                $("#iKnowIt").removeClass("btn-success").addClass("btn-info")
+                document.getElementById("iKnowIt").innerHTML = (data[currentWordIndex][2] + 0) + " 次我知道";
+            }
+        }
+
+        function IKnowIt() {
+            iKnowCurrentWord = !iKnowCurrentWord;
+            changeButton(iKnowCurrentWord);
+            saveData();
+        }
+
+        function deleteIt() {
+            tb.children[currentWordIndex].remove();
+            data.splice(currentWordIndex, 1);
+            wordCount(data.length);
+            currentWordIndex--;
+            currentWordIndex = getNextWordIndex(currentWordIndex);
+            saveData();
+        }
+
+        function review() {
+            sortByCount();
+            currentWordIndex = data.length - 31;
+        }
+    </script>
+    <script name="统计模块">
+        // 加载表格 >>>
+        function getRowData(word, meaning, count) {
+            var tr = document.createElement("tr");
+            var td_word = document.createElement("td");
+            td_word.innerText = word;
+            tr.append(td_word);
+            var td_meaning = document.createElement("td");
+            td_meaning.innerText = meaning;
+            tr.append(td_meaning);
+            var td_count = document.createElement("td");
+            td_count.innerText = count;
+            tr.append(td_count);
+            return tr;
+        }
+        for (var i = 0; i < data.length; i++) {
+            $("#table-body").append(getRowData(data[i][0], data[i][1], data[i][2]));
+        }
+        // 加载表格 <<<
+    </script>
+</body>
+
+</html>
